@@ -1,29 +1,70 @@
 # SafePaste
 
-SafePaste is a local Chrome extension that warns you when you paste sensitive text, submit a form, or manually scan selected text. Scanned content never leaves your browser.
+**Catch sensitive information before it is sent online.**
 
-## Getting started
+SafePaste is a privacy-first Chrome extension that helps prevent accidental
+sharing of API keys, access tokens, private keys, card numbers, and personal
+information. It runs locally in your browser: scanned text does not leave your
+device.
 
-1. Run `npm.cmd run build`.
-2. Open `chrome://extensions`, enable Developer mode, and choose **Load unpacked**.
-3. Select the `dist` folder.
+## What SafePaste does
 
-## Checks
+- Warns when pasted or submitted text appears to contain sensitive data.
+- Lets you redact selected values and review a redacted preview first.
+- Adds a second confirmation for high-risk secrets.
+- Lets you create personal "Never allow sending" rules for data that must
+  never be submitted.
+- Adds extra protection for common AI tools and support platforms.
+- Supports organization-managed blocking rules through Chrome policies.
 
-Run `npm.cmd test`, `npm.cmd run lint`, `npm.cmd run build`, and `npm.cmd run package` to run the tests, privacy lint, build, and release ZIP creation.
+SafePaste helps reduce accidental disclosure. It does not replace secret
+rotation, access controls, endpoint protection, or legal review.
 
-## Plans and payments
+## Privacy
 
-- **Free:** local warnings and anonymization for personal use.
-- **Pro:** €3.99 per user/month.
-- **Team (future admin panel):** €2.50 per user/month, billed monthly, with a five-user minimum (€12.50/month).
+SafePaste processes pasted text, form values, and selected text locally in the
+browser. It does not collect pasted content, API keys, tokens, passwords,
+private keys, form values, detection results, browsing history, or clipboard
+history.
 
-Replace only the public `extensionPayId` in `src/payment-config.ts` before publishing. The extension contains no secret key. See [docs/PAYMENT_SETUP.md](docs/PAYMENT_SETUP.md).
+Read the full [Privacy Policy](PRIVACY.md).
 
-## Team policies
+## Plans
 
-Administrators can enforce API-key, token, secret, private-key, card, and IBAN blocking through Chrome managed storage. The `managed-schema.json` file documents the accepted policy values; [docs/TEAM_WINDOWS_GUIDE.md](docs/TEAM_WINDOWS_GUIDE.md) contains the Windows test and deployment procedure. Managed rules override personal settings and are processed locally in the browser.
+| Plan | Price | Includes |
+| --- | ---: | --- |
+| Free | €0 | Local warnings, basic detection, and anonymization. |
+| Pro | €3.99/month | Personal never-send rules, custom patterns, and advanced local controls. |
+| Team | Coming later | Central administration, seats, and policy synchronization. |
 
-## Known limitation
+Pro payments are handled through ExtensionPay and Stripe. Team administration
+currently works with Chrome policies; automated Team billing and an admin panel
+are planned for a future release.
 
-Form warnings can allow a submission or copy anonymized combined field text; they do not automatically rewrite individual form fields. Detection is heuristic, especially for addresses and general secrets.
+## For teams
+
+IT administrators can enforce selected categories, such as API keys and
+tokens, on managed Windows devices without accessing employee content. See the
+[Team Windows Guide](docs/TEAM_WINDOWS_GUIDE.md).
+
+## Help and security
+
+- Product and setup questions: see [.github/SUPPORT.md](.github/SUPPORT.md).
+- Security vulnerabilities: follow [SECURITY.md](SECURITY.md). Do not disclose
+  secrets or customer data in a public issue.
+- Bugs: use the [bug-report template](.github/ISSUE_TEMPLATE/bug_report.md)
+  with sanitized examples only.
+
+## Development
+
+To test an unpublished build locally, run `npm.cmd run build`, open
+`chrome://extensions`, enable Developer mode, choose **Load unpacked**, and
+select the `dist` folder. Run `npm.cmd test` and `npm.cmd run lint` before
+packaging a release with `npm.cmd run package`.
+
+More details for maintainers are in [docs](docs/README.md), including the
+[ExtensionPay and GitHub guide](docs/MONETIZATION_AND_GITHUB_GUIDE.md).
+
+## License
+
+SafePaste is proprietary software. See [LICENSE](LICENSE).
